@@ -1,89 +1,45 @@
-Flask starter kit for Heroku
-============================
+# Python: Getting Started
 
-Install
--------
+A barebones Django app, which can easily be deployed to Heroku.
 
- - Install Heroku
- - Install Pip
- - Install virtualenvwrapper
- - Install [pip-save](https://github.com/abhiomkar/pip-save)
- - Install Flask
+This application supports the [Getting Started with Python on Heroku](https://devcenter.heroku.com/articles/getting-started-with-python) article - check it out.
 
-Setup
------
+## Running Locally
 
- - Clone this starter kit 
+Make sure you have Python 3.7 [installed locally](http://install.python-guide.org). To push to Heroku, you'll need to install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli), as well as [Postgres](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup).
 
-        git clone https://github.com/abhiomkar/heroku-flask.git
+```sh
+$ git clone https://github.com/heroku/python-getting-started.git
+$ cd python-getting-started
 
- - Login to Heroku
+$ python3 -m venv getting-started
+$ pip install -r requirements.txt
 
-        heroku login
+$ createdb python_getting_started
 
- - Create Heroku App
+$ python manage.py migrate
+$ python manage.py collectstatic
 
-        heroku create
+$ heroku local
+```
 
-Development
------------
+Your app should now be running on [localhost:5000](http://localhost:5000/).
 
- - Create Python virtual enviroment using pip-save tool & install all deps
+## Deploying to Heroku
 
-        pip init
-        pip install
- 
- - Run app locally
+```sh
+$ heroku create
+$ git push heroku master
 
-        python app.py
-        # or
-        heroku local
- 
- - Hack! Hack!
-  
+$ heroku run python manage.py migrate
+$ heroku open
+```
+or
 
-Deploy
-------
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
- - Deploy to Heroku
+## Documentation
 
-        git push heroku master
+For more information about using Python on Heroku, see these Dev Center articles:
 
- - You should see a link to your heroku app after successful deploy.
-
-Deploy to Dokku
----------------
-
-	- [Install](http://dokku.viewdocs.io/dokku/installation/) dokku on Host (Amazon EC2)
-
-	- Create a dokku app on Host (Amazon EC2)
-	
-		dokku apps:create dokku-flask
-
-	- Upload your public ssh key to your host (Amazon EC2). Execute this command on your local machine.
-
-		cat ~/.ssh/id_rsa.pub | ssh abhinay@abhiomkar.in "sudo sshcommand acl-add dokku [description]"
-
-
-		- "abhinay" is the user on your host with sudo permissions
-		- "abhiomkar.in" is the hostname where dokku was installed
-		- ~/.ssh/id_rsa.pub is your local machine's public ssh key
-
-	- Clone this repository on your local machine
-
-		git clone https://github.com/abhiomkar/heroku-flask.git
-
-	- Add remote and push it to dokku
-
-		cd heroku-flask
-		git remote add dokku dokku@abhiomkar.in:dokku-flask
-		git push dokku master
-
-		- where dokku-flask is the name of your application which you'd created on your host.
-
-	- You should see the URL to access your application after successful deployment. :-)
-
-Demo
-----
-
-https://heroku-flask.herokuapp.com/
+- [Python on Heroku](https://devcenter.heroku.com/categories/python)
