@@ -1,5 +1,7 @@
 .DS_Store
 readme_assets
+.gitignore
+database.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
